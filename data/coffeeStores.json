@@ -1,0 +1,82 @@
+{
+  "results": [
+    {
+      "fsq_id": "55928ef2498e41c5ff6c5609",
+      "categories": [
+        {
+          "id": 13034,
+          "name": "Café",
+          "icon": {
+            "prefix": "https://ss3.4sqi.net/img/categories_v2/food/cafe_",
+            "suffix": ".png"
+          }
+        }
+      ],
+      "chains": [],
+      "distance": 3081,
+      "geocodes": {
+        "main": {
+          "latitude": 9.758406,
+          "longitude": 118.747175
+        },
+        "roof": {
+          "latitude": 9.758406,
+          "longitude": 118.747175
+        }
+      },
+      "link": "/v3/places/55928ef2498e41c5ff6c5609",
+      "location": {
+        "address": "Robinsons Place Palawan",
+        "country": "PH",
+        "cross_street": "North National Highway",
+        "formatted_address": "Robinsons Place Palawan (North National Highway), 5300 Puerto Princesa, Palawan",
+        "locality": "Palawan",
+        "postcode": "5300",
+        "region": "Palawan"
+      },
+      "name": "Palawan Cafe",
+      "related_places": {},
+      "timezone": "Asia/Manila"
+    },
+    {
+      "fsq_id": "5765049f498ea0ca0e33bb7e",
+      "categories": [
+        {
+          "id": 13035,
+          "name": "Coffee Shop",
+          "icon": {
+            "prefix": "https://ss3.4sqi.net/img/categories_v2/food/coffeeshop_",
+            "suffix": ".png"
+          }
+        }
+      ],
+      "chains": [
+        {
+          "id": "9ca30a98-1518-4c6f-be6a-8288b7e27c10",
+          "name": "Bo's Coffee"
+        }
+      ],
+      "distance": 2224,
+      "geocodes": {
+        "main": {
+          "latitude": 9.780356,
+          "longitude": 118.748215
+        }
+      },
+      "link": "/v3/places/5765049f498ea0ca0e33bb7e",
+      "location": {
+        "address": "Right Wing Robinson's Place",
+        "address_extended": "G/F",
+        "country": "PH",
+        "cross_street": "",
+        "formatted_address": "Right Wing Robinson's Place, 5300 Lungsod ng Puerto Princesa",
+        "locality": "Puerto Princesa",
+        "postcode": "5300"
+      },
+      "name": "Bo's Coffee",
+      "related_places": {},
+      "timezone": "Asia/Manila"
+
+   }
+  ]
+}
