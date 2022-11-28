@@ -22,7 +22,6 @@ export  async function getStaticProps( context ) {
 
 export async function getStaticPaths() {
     const coffeeData = await fetchCoffeeData();
-    console.log(coffeeData)
     
     const paths = coffeeData.map(data =>{
         return {
@@ -40,7 +39,7 @@ const Store = ({ data }) => {
     if(router.isFallback) {
         return <div>Loading...</div>
     }
-    const {fsq_id,name, location, imgUrl } = data 
+    const {fsq_id, name, location, imgUrl } = data 
 
     console.log(data)
     
@@ -56,7 +55,7 @@ const Store = ({ data }) => {
         <div className={styles.container}>
         <div className={styles.col1}>
         <div className={styles.backToHomeLink}>
-          <Link href='/'>← Back to Home</Link>
+          <Link href='/'>← Back to home</Link>
         </div>
         <div className={styles.nameWrapper}>
          <h1 className={styles.name}>{name}</h1>

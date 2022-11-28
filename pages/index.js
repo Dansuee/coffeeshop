@@ -4,6 +4,7 @@ import Banner from '../component/Banner'
 import Card from '../component/Card'
 import Image from 'next/image' 
 import { fetchCoffeeData } from '../lib/coffe-data'
+import useTrackLocation from '../hooks/use-track-location'
 
 export async function getStaticProps() {
   
@@ -17,9 +18,14 @@ export async function getStaticProps() {
 }
 
 export default function Home({ data }) {
+
+  const {handleTrackLocation, latLong, locationErrorMsg } = useTrackLocation(); 
+
+  console.log({latLong, locationErrorMsg})
   const handleOnClick = () => {
-    console.log('click');
-   }
+    
+    handleTrackLocation();
+   } 
 
 
   return (
