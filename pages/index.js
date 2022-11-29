@@ -94,7 +94,6 @@ useEffect(() => {
         </div>
         )}
 
-
         {data.length > 0 && (
         <div className={styles.sectionWrapper}>
        <h2 className={styles.heading2}>Seoul Coffee Shops</h2>

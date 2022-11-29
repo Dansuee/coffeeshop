@@ -6,7 +6,7 @@ const useTrackLocation = () => {
     const [findingLocation, setFindingLoction] = useState(false)
    
     const success = (position) => {
-        const latitude = position.coords.latitude;
+        const latitude = position.coords.latitude; 
         const longitude = position.coords.longitude;
 
         setLatLong(`${latitude},${longitude}`);
