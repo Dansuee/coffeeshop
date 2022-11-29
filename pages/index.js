@@ -5,12 +5,11 @@ import Card from '../component/Card'
 import Image from 'next/image' 
 import { fetchCoffeeData } from '../lib/coffe-data'
 import useTrackLocation from '../hooks/use-track-location'
+import { useEffect, useState } from 'react'
 
 export async function getStaticProps() {
-  
  const data = await fetchCoffeeData();
-
-  return {
+  return {  
     props: {
        data,
     },
@@ -19,9 +18,40 @@ export async function getStaticProps() {
 
 export default function Home({ data }) {
 
-  const {handleTrackLocation, latLong, locationErrorMsg } = useTrackLocation(); 
+const {handleTrackLocation, latLong, locationErrorMsg, findingLocation } = useTrackLocation(); 
+const [coffeeShop, setCoffeeShop] = useState('')
 
-  console.log({latLong, locationErrorMsg})
+console.log({ latLong, locationErrorMsg })
+
+      //without cleaup!!
+// useEffect(async() => {
+//   if(latLong) {
+//    try {
+//     const fetch = await fetchCoffeeData(latLong);
+//     console.log({fetch})
+//    } catch(error) {
+//     console.log(error)
+//    } // } 
+// },[latLong])
+
+      // clean up
+useEffect(() => { 
+  const fetch = async () =>{
+    if (latLong) {
+      try {
+        const fetchedCoffee = await fetchCoffeeData(latLong);
+        console.log({fetchedCoffee})
+        setCoffeeShop(fetchedCoffee)
+      }catch (error) {
+        console.log({error})
+      }  
+    }
+  }
+  fetch()
+},[latLong]);
+   
+
+
   const handleOnClick = () => {
     
     handleTrackLocation();
@@ -36,29 +66,54 @@ export default function Home({ data }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-            <Banner button= "View shop nearby" handleOnClick={handleOnClick}/>
+            <Banner button= {findingLocation ? "Locating..." : "View shop nearby"} 
+            handleOnClick={handleOnClick}
+            />
+           {locationErrorMsg && <p style={{color:'white',fontWeight:'bolder'}}>Something went wrong:{locationErrorMsg}</p>}
         <div className={styles.heroImage}>
-            <Image src="/static/hero-image.png" width={700} height={400}/>
+            <Image src="/static/hero-image.png" 
+            width={700} height={400}
+            />
         </div>
 
-        {data.length > 0 && (
-        <>
-       <h2 className={styles.heading2}>Palawan Coffee Shops</h2>
+        {coffeeShop.length > 0 && (
+        <div className={styles.sectionWrapper}>
+       <h2 className={styles.heading2}>Stores near me</h2>
        <div className={styles.cardLayout}>
-            {data.map(data => {
+            {coffeeShop.map(data => {
               return(<Card 
                   key={data.fsq_id}
                   card={data.name}
-                  imgUrl={data.imgUrl || "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"}
+                  imgUrl={data.imgUrl}
                   href={`/store/${data.fsq_id}`}
                   className={styles.card}
                 /> 
               )
             })}
         </div>
-        </>
+        </div>
+        )}
+
+
+        {data.length > 0 && (
+        <div className={styles.sectionWrapper}>
+       <h2 className={styles.heading2}>Seoul Coffee Shops</h2>
+       <div className={styles.cardLayout}>
+            {data.map(data => {
+              return(<Card 
+                  key={data.fsq_id}
+                  card={data.name}
+                  imgUrl={data.imgUrl}
+                  href={`/store/${data.fsq_id}`}
+                  className={styles.card}
+                /> 
+              )
+            })}
+        </div>
+        </div>
         )}
       </main>
     </div>
+    
   )
 }
